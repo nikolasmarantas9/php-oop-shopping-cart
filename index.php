@@ -923,5 +923,22 @@ $totalQuantity = $cart->getTotalQuantity();
     </div>
 </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const savedScroll = sessionStorage.getItem('shoppingCartScrollY');
+
+    if (savedScroll !== null) {
+        window.scrollTo(0, Number(savedScroll));
+        sessionStorage.removeItem('shoppingCartScrollY');
+    }
+
+    document.querySelectorAll('form[method="POST"], form[method="post"]').forEach(function (form) {
+        form.addEventListener('submit', function () {
+            sessionStorage.setItem('shoppingCartScrollY', String(window.scrollY));
+        });
+    });
+});
+</script>
+
 </body>
 </html>
